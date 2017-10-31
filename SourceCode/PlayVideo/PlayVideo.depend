@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1499725498 source:/home/pi/Cpp/PlayVideo/main.cpp
+	<iostream>
+	"PlayVideo.h"
+	<stdlib.h>
+	<wiringPi.h>
+	"ListManager.h"
+
+1499651932 /home/pi/Cpp/PlayVideo/PlayVideo.h
+	<unistd.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<iostream>
+	<wiringPi.h>
+	<sstream>
+
+1499642459 /home/pi/Cpp/PlayVideo/ListManager.h
+	<stdlib.h>
+	<stdio.h>
+	<unistd.h>
+	<iostream>
+	<fstream>
+	<string>
+
+1499658154 source:/home/pi/Cpp/PlayVideo/ListManager.cpp
+	"ListManager.h"
+
+1499725635 source:/home/pi/Cpp/PlayVideo/PlayVideo.cpp
+	"PlayVideo.h"
+

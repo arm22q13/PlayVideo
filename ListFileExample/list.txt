@@ -1,0 +1,75 @@
+*  DVD List file.  The filename of this file must match the environment variable DVDLISTFILE
+*  A start "*" at the start of a line indicates a comment.
+*  Empty lines will be ignored
+*  Each line starts with a volume number (in decibels), one or more spaces, and then a file name. 
+*  DVD video files must be in the same directory as this list file.
+
+-150     Stevie Ray Vaughan Tribute.mp4
+-100     Hornsby Live.mp4
+@VIDEOS2
+560      Lyle Lovett.mp4
+@VIDEOS
+820      Pat Metheny We Live Here.mp4
+1000     Clapton Unplugged.mp4
+-200     Cars.mp4
+950      Raffi Young Childrens Concert.mp4
+1050     Raffi Rise and Shine Band.mp4
+850      Raffi on Broadway.mp4
+550      Littlefeat.mp4
+1050     Eagles Hell Freezes Over.mp4
+30       Cat Stevens Majikat.mp4
+-250     Garth Brooks NYC.mp4
+-150     George Benson Live.mp4
+-210     Hendrix Woodstock.mp4
+-150     WeeSing King Coles Party.mp4
+140      Neil Young Silver and Gold.mp4
+300      Csn Acoustic.mp4
+220      The Police Synchronicity.mp4
+560      Sheryl Crow Rockin The Globe.mp4
+@VIDEOS2
+*1350     Diana Krall Live.mp4
+@VIDEOS
+280      James Taylor.mp4
+@VIDEOS2
+150      Stevie Ray Vaughan Double Trouble.mp4
+@VIDEOS
+-400     Bonnie Raitt.mp4
+160      Elmopaloosa.mp4
+450      Elephant Show Back by Demand.mp4
+@VIDEOS2
+150      Keith Jarrett Trio1996.mp4
+@VIDEOS
+-150     Talking Heads.mp4
+-150     Bruce Springsteen Anthology.mp4
+-50      Disney Be Our Guest.mp4
+-50      Disney Friend Like Me.mp4
+-50      Disney Under The Sea.mp4
+250      Toy Story.mp4
+-50      BB King Jazz Central.mp4
+-150     WeeSing Train.mp4
+550      Grandpas Toys.mp4
+550      Musical Mansion.mp4
+550      Sillyville.mp4
+-150     Bela Fleck.mp4
+-150     Earth Wind Fire.mp4
+370      Bob Dylan1976.mp4
+-150     WeeSing Classic Songs.mp4
+130      Bryan Adams.mp4
+@VIDEOS2
+*130     Santana goes here
+@VIDEOS
+250      Chip Dale Crimebusters.mp4
+280      Paul Simon Graceland.mp4
+300      Concert For Bangladesh.mp4
+900      Dave Matthews Listener Supported.mp4
+550      George Benson Montreux.mp4
+1070     Aladdin.mp4
+500      Allman Bros Band at Beacon.mp4
+1850     Buddy Guy.mp4
+250      Clapton Chronicles.mp4
+250      Clapton And Friends.mp4
+@VIDEOS2
+*288      Clapton Montreux.mp4
+*228     Bon Jovi.mp4
+@VIDEOS
+690      Sound Of Music.mp4
