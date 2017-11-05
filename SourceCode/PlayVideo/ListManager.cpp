@@ -13,7 +13,7 @@ void ListManager::initialize(string input_list_filename) {
 
    current_file_pointer=0;
    ifstream listfile;
-   for (int i=0; i<3; i++) {  // try 3 times to open the list file
+   for (int i=0; i<6; i++) {  // try 6 times to open the list file
       cout << "LM: Opening list file at:" << list_filename << endl;
       listfile.open(list_filename.c_str(), std::ifstream::in);
       if (!listfile.rdstate()== cout.goodbit) {
@@ -60,21 +60,22 @@ void ListManager::initialize(string input_list_filename) {
 
       if (line.empty()) continue;  // Go to next line if this line is now empty      
 
-      // Look for evidence of a legitimate volume value at the beginning of the line
-      // examples  +100, -1000, 50
+      // Look for evidence of a legitimate volume value at the beginning of the line.
+      // Range is -6000 to 0.  Positive values have no effect.  They are tagged with a warning.
       if (line.find_first_not_of("+-0123456789") == 0) {
          // invalid volume entry
          cout << "LM: invalid volume entry, skipping line" << endl;     
          continue;
       }
 
-      // Read volume value
+      // Read volume value. 
       // Locate space or tab between volume and file name
       int first_sp = line.find_first_of(whitespace); 
       string numstr=line.substr(0,first_sp);  
       int volume;
       sscanf(numstr.c_str(),"%d",&volume);
       videos[current_file_pointer].volume=volume;
+      if (volume > 0) cout << "LM: Warning: positive volume values are ignored by omxplayer." << endl;  
 
       // remainder of line is the video file name,
       // with possible leading and trailing spaces.
@@ -83,6 +84,10 @@ void ListManager::initialize(string input_list_filename) {
       if (fn.size() < 4) {   // too short to be a file name
          cout << "LM: invalid file name. Skipping." << endl;
          continue;
+      }
+      // If first character of file name is @ sign, that file will set to autorepeat (loop).
+      if (fn.at(0) == LOOP_VIDEO_MARK) {
+         cout << "LM: This file will be looped (replayed) automatically." << endl;
       }
       videos[current_file_pointer].dvd_filename = fn;
       videos[current_file_pointer].flash_drive_path = disk_path;
@@ -99,7 +104,6 @@ void ListManager::initialize(string input_list_filename) {
       cout << i << ": " << videos[i].volume << ">" << videos[i].flash_drive_path << videos[i].dvd_filename << "<" << endl;
    }
    cout << endl;
-
 
 } // initialize()
 

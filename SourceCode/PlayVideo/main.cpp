@@ -32,18 +32,19 @@
 //  Note, this scheme requires the flash drives to have names.
 //  Example list file:
 //  * Example list file  /media/pi/VIDEOS/list.txt   (on USB drive called VIDEOS)
-//  *volume  file-name
-//  750      Eagles Hell Freezes Over.mp4
-//  230      Cat Stevens Majikat.mp4
-//  -200     Garth Brooks NYC.mp4
-//  -150     George Benson Live.mp4
+//  *volume  file-name  volume value range -6000 to 0  (no positive values)
+//  -0       Eagles Hell Freezes Over.mp4
+//  * This file name is prepended with @ sign.  It runs in loop mode (restarts when finished).
+//  -0       @Cat Stevens Majikat.mp4
+//  -400     Garth Brooks NYC.mp4
+//  -1000    George Benson Live.mp4
 //  * The next two videos are found on the second USB drive
 //  @VIDEOS2
-//  220      The Police Synchronicity.mp4
-//  560      Sheryl Crow Rockin The Globe.mp4
+//  -0       The Police Synchronicity.mp4
+//  -0       Sheryl Crow Rockin The Globe.mp4
 //  * This file determines the play order and we can go back to the first USB drive, if desired
 //  @VIDEOS
-//  -300     Bonnie Raitt.mp4
+//  -600     Bonnie Raitt.mp4
 //
 //  As just discussed, the location of the list.txt file is defined in the environment variable DVDLISTFILE (see below).
 //  The automatic mount of Raspbian will mount this under the user's name under the /media directory.  Since the [default]
@@ -90,7 +91,6 @@
 //
 //  Shutdown button: See the program ShutDown.
 //
-//
 //  v 0.1  10 July 2017  Initial version working.
 //  v 0.2  11 July 2017  Get location and name of list file from the environment variable  DVDLISTFILE
 //  v 0.3  12 July 2017  Support for pulsed button inputs.  Added environment variable DVDPLAYER
@@ -115,6 +115,10 @@
 //  v 1.6   4 Oct 2017   Holding down the FOWARD or REVERSE button now continuously steps through the videos.
 //                       KILL_WAIT_TIME=500 to make sure previous video has stopped.  SLOW_BOUNCETIME is 2000 to give the user time
 //                       to release the button before the next video starts.
+//  v 1.7   4 Nov 2017   Prepend the file name with the @ sign to make that video loop indefinitely.
+//  v 1.8   5 Nov 2017   Bug in PlayVideo caused files greater than 2.147 GB to not be found. (fopen() replaced with fopen64())
+//  v 1.9   5 Nov 2017   ListManager now tries 6 times to open the list directory
+// please update the VERSION string with each new version.
 
 #include <iostream>
 #include "PlayVideo.h"
@@ -125,6 +129,8 @@
 #include "ExecuteCommand.cpp"
 
 using namespace std;
+
+const string VERSION = "v 1.9  5 Nov 2017";
 
 
 //	GPIO pin numbers
@@ -157,7 +163,7 @@ void reverseButtonISR (void) {
 
 
 int main()  {
-   cout << "PlayVideo" << endl;
+   cout << "PlayVideo " << VERSION << endl;
 
   // If PlayVideo is already running, exit immediately.
    ExecuteCommand CMD;

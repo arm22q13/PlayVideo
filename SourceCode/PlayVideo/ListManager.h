@@ -1,11 +1,8 @@
 // ListManager.h
 //
-//
 //  The ListManager class keeps track of the list of video files to play and the volume settings for
 //  each video.
 // 
-//  Future: Support DVD files on up to 4 USB drives by adding a special line in the list.txt file. 
-//
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -36,6 +33,7 @@ static const int MAXVIDEOFILES = 300;
 
 const char LIST_FILE_COMMENT_MARK = '*';
 const char EXTRA_VIDEO_DISK_MARK = '@';
+const char LOOP_VIDEO_MARK = '@';   
 const string whitespace = " \t";
 
 

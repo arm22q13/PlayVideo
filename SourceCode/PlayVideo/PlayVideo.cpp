@@ -16,15 +16,30 @@ void PlayVideo::initialize(string player_filename, string player_options) {
 // Returns true if start was successful
 bool PlayVideo::playStart(videospec_t video) {
    FILE *ftest;
+   string dvd_filename;
+   string loopOption;
+
+   // check to see if this video file is to be looped repeatedly
+   // if so, it's name is prepended with the loop mark.
+   if ((video.dvd_filename.length() > 2) && (video.dvd_filename.at(0) == LOOP_VIDEO_MARK)) {
+      dvd_filename = video.dvd_filename.substr(1);  // remove prepended character
+      loopOption =  " --loop ";   // tell omxplayer to loop this video indefinitely
+   }
+   else {
+      dvd_filename = video.dvd_filename;
+      loopOption =  " ";
+   }
+
    string PPVolume = "--vol " + SSTR(video.volume+SYSTEM_VOLUME);
-   string VFN = video.flash_drive_path+video.dvd_filename;
-   string playString = PPPath + PPVolume + " " + PPOptions + " \"" + VFN + "\"";
+   string VFN = video.flash_drive_path+dvd_filename;
+   string playString = PPPath + PPVolume + " " + PPOptions + loopOption + " \"" + VFN + "\"";
    printf("PV: playString\n");
    cout << "PV: " << playString << endl;
 
    // Make sure the video file exists and can be opened
    cout << "PV: ...looking for: " << VFN << endl;
-   ftest = fopen(VFN.c_str(), "rb");
+   // requires fopen64() to recognize files larger than 2.147 GB
+   ftest = fopen64(VFN.c_str(), "rb");
    if (ftest!=NULL) {
        fclose(ftest);  // successful test
        cout << "PV: ...found it." << endl;
@@ -60,7 +75,7 @@ void PlayVideo::playEnd(){
       // If we find out it is running, we need to increase KILL_WAIT_TIME or find
       // another way to assure the old process is killed.
       ExecuteCommand CMD;
-      string grepResult = CMD.execute("ps ax | grep omxplayer");  
+      string grepResult = CMD.execute("ps ax | grep omxplayer");
       cout << "PV: ps ax found: " << endl;
       cout << grepResult << endl;
       printf("PV: Done killing player. \n");
