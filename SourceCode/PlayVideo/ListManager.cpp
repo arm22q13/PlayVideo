@@ -113,7 +113,7 @@ videospec_t ListManager::currentVideo() {
 
 videospec_t ListManager::nextVideo() {
    current_file_pointer++;
-   if (current_file_pointer>=last_file_pointer) current_file_pointer=0;
+   if (current_file_pointer > last_file_pointer) current_file_pointer=0;
    cout << "LM: pointer=" << current_file_pointer << " video=" << videos[current_file_pointer].dvd_filename << endl;
    return (videos[current_file_pointer]);
 }  // nextVideo()

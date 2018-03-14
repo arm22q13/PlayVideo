@@ -118,6 +118,7 @@
 //  v 1.7   4 Nov 2017   Prepend the file name with the @ sign to make that video loop indefinitely.
 //  v 1.8   5 Nov 2017   Bug in PlayVideo caused files greater than 2.147 GB to not be found. (fopen() replaced with fopen64())
 //  v 1.9   5 Nov 2017   ListManager now tries 6 times to open the list directory
+//  v 2.0  13 Mar 2018   Bug in ListManager skipped last video in the forward direction
 // please update the VERSION string with each new version.
 
 #include <iostream>
@@ -130,7 +131,7 @@
 
 using namespace std;
 
-const string VERSION = "v 1.9  5 Nov 2017";
+const string VERSION = "v 2.0  13 March 2018";
 
 
 //	GPIO pin numbers
