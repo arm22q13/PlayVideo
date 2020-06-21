@@ -1,5 +1,11 @@
-Adaptive video jukebox The documents here describe the software and hardware device that implements is a video 
-jukebox.  All of the videos go onto a computer disk or flash drive.  The user has one switch. Pressing the switch 
-starts the next video in a list.  The user keeps pressing the switch until the desired video starts playing.  When 
-the end of the list of videos is reached, the list starts over. A second switch can be added to step backwards 
-through the video list.
+PlayVideo adaptive video jukebox. The documents here describe software and hardware to implement a video jukebox using a Raspberry Pi. A fully functional image is included. The image can be flashed to a microSD card for the Raspberry Pi and will boot the jukebox. The jukebox requires one switch for the user (typically a push button adaptive switch) connected to two GPIO pins of the Raspberry Pi. The videos are stored on one or more thumb drives along with a simple text file that lists each video.
+
+Operation: The user has one switch. Pressing the switch starts the next video in the list of videos. The user keeps pressing the switch until the desired video starts playing. When the end of the list of videos is reached, the list wraps around and starts over. A second switch can be added to step backwards through the list of videos.
+
+Other features: The hardware interface can be quite simple, but the files here describe how to make a nicer interface to implement a wireless pushbutton. The software allows you to assign a different loudness to each video to normalize the audio levels among the videos. There is an option to restart any video when it finishes playing (replay). 
+
+Source code: The PlayVideo files include all source code and instructions to compile the player. PlayVideo is a turn-key system that does not require a keyboard or mouse. However, for modifying the source code, it is easy to plug in a keyboard and mouse and make changes to the software. The Raspian image comes with the Code::Blocks C++ compiler installed. After adding two library files to the build options, the PlayVideo source code can be modified and recompiled quite easily. The PlayVideo source code is not complicated. (Most of the effort was the many small adjustments to the Raspian operating system for turn-key startup and smooth system shutdown.) You can make changes to the PlayVideo files and recompile all within the Code::Blocks IDE. One copy command moves the new version to the /bin directory and the system is ready for testing.
+
+In addition to source code changes there are detailed instructions to create the customized changes to Raspian for building a distribution microSD image. Building the image uses a few tricks to keep the image small. Anyone trying to create a small Raspian image might want to look over these instructions. 
+
+Requirements: Raspberry Pi 3B, 3B+ or 4. A microSD card. MP4 videos. A thumb drive big enough to hold the videos. A thumb drive that holds 128 GB can store 30 or so full length movies. PlayVideo supports up to 4 thumb drives at a time. A momentary switch, usually an adaptive switch. A little bit of skill with jumper wires to connect the switch. Good building skills are needed to make a more complete interface, if desired, including a wireless switch option.
