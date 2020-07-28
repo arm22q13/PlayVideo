@@ -48,6 +48,8 @@ class PlayVideo {
       bool playStart(videospec_t video);
       void playEnd();
 
+      bool isPlaying();
+
 }; // PlayVideo
 
 #endif

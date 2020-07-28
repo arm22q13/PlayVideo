@@ -2,6 +2,8 @@ IDIR =.
 CC=g++
 CFLAGS=-I$(IDIR) -O2
 
+INSTALL=/usr/bin/install
+
 ODIR=.
 
 LDFLAGS=-s
@@ -27,4 +29,4 @@ clean:
 	/bin/rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ 
 
 install: $(TARGET)
-	sudo /bin/cp PlayVideo /usr/bin
+	sudo $(INSTALL) -m 755 PlayVideo /usr/bin

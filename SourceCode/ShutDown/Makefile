@@ -1,6 +1,13 @@
+#
+#
+
+TARGETS=ShutDown
+
 IDIR =.
 CC=g++
 CFLAGS=-I$(IDIR) -O2
+
+INSTALL=/usr/bin/install
 
 ODIR=.
 
@@ -20,8 +27,12 @@ $(ODIR)/%.o: %.cpp $(DEPS)
 ShutDown: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
-.PHONY: clean
-
 clean:
 	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ 
+
+install: $(TARGETS)
+	sudo $(INSTALL) -m 755 ShutDown /usr/bin
+
+.PHONY: clean
+.PHONY: install
 

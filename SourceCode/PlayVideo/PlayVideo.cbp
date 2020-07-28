@@ -4,13 +4,13 @@
 	<Project>
 		<Option title="PlayVideo" />
 		<Option pch_mode="2" />
-		<Option compiler="gnu_gcc_compiler_for_rapi" />
+		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/PlayVideo" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
-				<Option compiler="gnu_gcc_compiler_for_rapi" />
+				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
@@ -19,35 +19,25 @@
 				<Option output="bin/Release/PlayVideo" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
-				<Option compiler="gnu_gcc_compiler_for_rapi" />
+				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add library="/usr/lib/libwiringPi.so" />
-					<Add library="/usr/lib/libwiringPiDev.so" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="ListManager.cpp">
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="ListManager.h">
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="PlayVideo.cpp">
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="PlayVideo.h">
-			<Option target="Release" />
-		</Unit>
+		<Unit filename="ListManager.cpp" />
+		<Unit filename="ListManager.h" />
+		<Unit filename="PlayVideo.cpp" />
+		<Unit filename="PlayVideo.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
-			<envvars />
 			<code_completion />
 			<debugger />
 		</Extensions>
