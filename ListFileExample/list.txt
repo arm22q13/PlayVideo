@@ -1,10 +1,40 @@
 *  DVD List file.  The filename of this file must match the environment variable DVDLISTFILE
+*  That variable default value is 'list.txt'
+*  The order of the files in this list is the order in which the files will be played when 
+*  stepping through files with the PlayVideo system. The last file wraps around to the first 
+*  file in both direction.
+*
 *  An asterisk mark '*' at the start of a line indicates a comment. Empty lines are ignored.
-*  Change which flash drive has the files by using at mark '@' in front of the flash drive name.
-*  Make the video file repeat (loop) using the at mark '@' in front of the video file name.
-*  Each line identifying a video file starts with a negative volume number (in decibels). 
-*  This file and the video files names must be in the same directory.
-
+*  The asterisk can be used to comment out a file name. This will prevent a file from playing, 
+*  but keep the file in the list for future use.
+*
+*  The first flash drive must be named VIDEOS and have this list.txt file in its root directory.
+*  Flash drives can be added as VIDEOS2, VIDEOS3 and VIDEOS4, if desired. If using more than one
+*  flash drive, change which flash drive to read next by using the at mark '@' in front of the flash 
+*  drive name. See the example below. It jumps back and forth between flash drives. If every file is 
+*  on VIDEOS, the @ mark is not needed.
+*
+*  To make a video file repeat (loop) using the at mark '@' in front of a video file name. Note, 
+*  this has nothing to do with changing flash drives. 
+*  Each line identifying a video file must start with a negative sign and the volume number (in decibels). 
+*  The volume number is actually an attenuation value. See the installation document file for further details. 
+*  This file and the video file names must be in the same directory.
+*
+*  There are two special commands:
+*
+*  MIN_PLAY_TIME
+*  When the player is advanced to the next video, that video will play for MIN_PLAY_TIME seconds before 
+*  the player can be advanced again. Example:
+*  $MIN_PLAY_TIME=60
+*  This command will assure that a video will play for at least 60 seconds before the forward or reverse 
+*  button will be recognized again.
+*
+*  AUTO_ADVANCE
+*  When the AUTO_ADVANCE commend is set to YES or TRUE, the player will advance to the next video in the 
+*  list when a video ends. Example:
+*  $AUTO_ADVANCE=YES
+*  
+*
 -2100     Stevie Ray Vaughan Tribute.mp4
 -2200     Hornsby Live.mp4
 @VIDEOS2
@@ -25,21 +55,16 @@
 -1800     WeeSing King Coles Party.mp4
 -1000     Neil Young Silver and Gold.mp4
 -1100     Csn Acoustic.mp4
--1100     The Police Synchronicity.mp4
--1000     Sheryl Crow Rockin The Globe.mp4
 @VIDEOS2
 *-0      Diana Krall Live.mp4
-@VIDEOS
 -600     James Taylor.mp4
-@VIDEOS2
 -1500    Stevie Ray Vaughan Double Trouble.mp4
+-1100     The Police Synchronicity.mp4
+-1000     Sheryl Crow Rockin The Globe.mp4
 @VIDEOS
 -2300    Bonnie Raitt.mp4
 -1600    Elmopaloosa.mp4
 -1100    Elephant Show Back by Demand.mp4
-@VIDEOS2
--0       Keith Jarrett Trio1996.mp4
-@VIDEOS
 -2000    Talking Heads.mp4
 -2100    Bruce Springsteen Anthology.mp4
 -1400    Disney Be Our Guest.mp4
@@ -69,8 +94,4 @@
 -0       Buddy Guy.mp4
 -1200    Clapton Chronicles.mp4
 -800     Clapton And Friends.mp4
-@VIDEOS2
-*-0      Clapton Montreux.mp4
-*-0      Bon Jovi.mp4
-@VIDEOS
 -200     Sound Of Music.mp4
