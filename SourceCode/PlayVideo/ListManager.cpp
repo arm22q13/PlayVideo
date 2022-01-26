@@ -8,8 +8,9 @@
 void ListManager::initialize(string input_list_filename, string max_reboot) {
    list_filename = input_list_filename;  // save the list file path
    max_reboot_string = max_reboot;      //save the reboot attempts
+   int max_reboot_count = 0;
    try {
-	int max_reboot_count = stoi(max_reboot_string); //set the maximum reboot attempts
+	max_reboot_count = stoi(max_reboot_string); //set the maximum reboot attempts
 	}
 	catch (...) {
 		max_reboot_count = 1; // max_reboot did not contain a string with an integer
