@@ -5,6 +5,11 @@
 //  is called FreedomDVD and was developed for Windows XP.  This version is designed for a Raspberry
 //  Pi 3 running Raspbian, a Debian Linux variant.
 //
+//  Updated 1/25/2022 by J. Mitz.
+//  Functions have been added to allow the system to automatically reboot a defined number of times if
+//  the system is unable to locate the list file.
+//  This will unmount and remount drives, fixing list file drive path issues automatically.
+//
 //  PlayVideo assumes there is a flash drive of size 64 MB formatted at FAT32 plugged into
 //  one of the USB sockets. A SD or microSD card formatted as FAT32 will also work if USB adapter is used.
 //  The USB drive must have .MP4 (or other) video files on the root directory along with a special
@@ -118,6 +123,7 @@
 //  v 1.7   4 Nov 2017   Prepend the file name with the @ sign to make that video loop indefinitely.
 //  v 1.8   5 Nov 2017   Bug in PlayVideo caused files greater than 2.147 GB to not be found. (fopen() replaced with fopen64())
 //  v 1.9   5 Nov 2017   ListManager now tries 6 times to open the list directory
+//  v 2.1  25 Jan 2022   Added ListManager functions for automatic reboots
 // please update the VERSION string with each new version.
 
 #include <iostream>
@@ -146,6 +152,7 @@ static volatile int reverseButtonFlag =  0 ;
 const char LIST_FILE_ENV_VAR[] = "DVDLISTFILE";
 const char DVD_PLAYER_ENV_VAR[] = "DVDPLAYER";
 const char DVD_PLAYER_OPTIONS_ENV_VAR[] = "DVDPLAYEROPTIONS";
+const char REBOOT_ATTEMPTS_ENV_VAR[] = "REBOOTATTEMPTS";
 
 static int MyPID = 0;
 
@@ -228,6 +235,13 @@ int main()  {
       cout << " Environment variable " << DVD_PLAYER_OPTIONS_ENV_VAR << " not found. Quitting!" << endl;
       exit(-1);
    }
+   
+   char *reboot_count=getenv(REBOOT_ATTEMPTS_ENV_VAR);
+      if (reboot_count == NULL) {
+      cout << " Environment variable " << REBOOT_ATTEMPTS_ENV_VAR << " not found. Quitting!" << endl;
+      exit(-1);
+   }
+   
    cout << "Will try to use these player option settings: " << player_options << endl;
 
    string PlayerOptions = player_options;
@@ -249,7 +263,7 @@ int main()  {
    ListManager LM;
    // We give ListManager the location of the list file and player
    cout << "Fetching list of videos" << endl;
-   LM.initialize(list_file_name);
+   LM.initialize(list_file_name, reboot_count);
 
    // START FIRST VIDEO
    PlayVideo play;
