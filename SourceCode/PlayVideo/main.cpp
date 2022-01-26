@@ -5,9 +5,10 @@
 //  is called FreedomDVD and was developed for Windows XP.  This version is designed for a Raspberry
 //  Pi 3 running Raspbian, a Debian Linux variant.
 //
-//  Updated 1/20/2022 by J. Mitz.
+//  Updated 1/25/2022 by J. Mitz.
 //  Functions have been added to allow the system to automatically reboot a defined number of times if
-//  the system is unable to locate the list file. This facilitates the unmounting and remounting of drives.
+//  the system is unable to locate the list file.
+//  This will unmount and remount drives, fixing list file drive path issues automatically.
 //
 //  PlayVideo assumes there is a flash drive of size 64 MB formatted at FAT32 plugged into
 //  one of the USB sockets. A SD or microSD card formatted as FAT32 will also work if USB adapter is used.
