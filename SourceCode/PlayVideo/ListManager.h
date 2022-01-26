@@ -2,7 +2,7 @@
 //
 //  The ListManager class keeps track of the list of video files to play and the volume settings for
 //  each video.
-//  For PlayVideo version 2.1
+//  Updated to PlayVideo version 2.1
 
 #include <stdlib.h>
 #include <stdio.h>
